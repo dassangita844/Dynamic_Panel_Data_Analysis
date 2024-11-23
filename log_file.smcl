@@ -1,0 +1,444 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}C:\Users\Sangita Das\Desktop\Panel_data\Dynamic_panel\log_file.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}23 Nov 2024, 22:58:33
+{txt}
+{com}. 
+. * Load the data
+. use "C:\Users\Sangita Das\Desktop\Panel_data\Panel_data_RBU\2_dynamc_panel_data.dta", clear
+{txt}(PSID wage data 1976-82 from Baltagi and Khanti-Akom (1990))
+
+{com}. 
+. * Display basic information about the dataset
+. describe
+
+{txt}Contains data from {res}C:\Users\Sangita Das\Desktop\Panel_data\Panel_data_RBU\2_dynamc_panel_data.dta
+{txt}  obs:{res}         4,165                          PSID wage data 1976-82 from Baltagi and
+                                                Khanti-Akom (1990)
+{txt} vars:{res}            22                          8 Mar 2024 09:51
+{txt} size:{res}       279,055                          (_dta has notes)
+{txt}{hline}
+              storage   display    value
+variable name   type    format     label      variable label
+{hline}
+{p 0 48}{res}{bind:exp            }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}years of full-time work experience{p_end}
+{p 0 48}{bind:wks            }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}weeks worked{p_end}
+{p 0 48}{bind:occ            }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}occupation; occ==1 if in a blue-collar occupation{p_end}
+{p 0 48}{bind:ind            }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}industry; ind==1 if working in a manufacturing industry{p_end}
+{p 0 48}{bind:south          }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}residence; south==1 if in the South area{p_end}
+{p 0 48}{bind:smsa           }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}smsa==1 if in the Standard metropolitan statistical area{p_end}
+{p 0 48}{bind:ms             }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}marital status{p_end}
+{p 0 48}{bind:fem            }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}female or male{p_end}
+{p 0 48}{bind:union          }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}if wage set be a union contract{p_end}
+{p 0 48}{bind:ed             }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}years of education{p_end}
+{p 0 48}{bind:blk            }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}black{p_end}
+{p 0 48}{bind:lwage          }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}log wage{p_end}
+{p 0 48}{bind:id             }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:t              }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:tdum1          }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}t==     1.0000{p_end}
+{p 0 48}{bind:tdum2          }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}t==     2.0000{p_end}
+{p 0 48}{bind:tdum3          }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}t==     3.0000{p_end}
+{p 0 48}{bind:tdum4          }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}t==     4.0000{p_end}
+{p 0 48}{bind:tdum5          }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}t==     5.0000{p_end}
+{p 0 48}{bind:tdum6          }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}t==     6.0000{p_end}
+{p 0 48}{bind:tdum7          }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}t==     7.0000{p_end}
+{p 0 48}{bind:exp2           }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{txt}{hline}
+Sorted by: {res}id  t
+{txt}
+{com}. 
+. * Summarize the dataset to check for missing values and overall statistics
+. summarize
+
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 9}exp {c |}{res}      4,165    19.85378    10.96637          1         51
+{txt}{space 9}wks {c |}{res}      4,165    46.81152    5.129098          5         52
+{txt}{space 9}occ {c |}{res}      4,165    .5111645    .4999354          0          1
+{txt}{space 9}ind {c |}{res}      4,165    .3954382    .4890033          0          1
+{txt}{space 7}south {c |}{res}      4,165    .2902761    .4539442          0          1
+{txt}{hline 13}{c +}{hline 57}
+{space 8}smsa {c |}{res}      4,165    .6537815     .475821          0          1
+{txt}{space 10}ms {c |}{res}      4,165    .8144058    .3888256          0          1
+{txt}{space 9}fem {c |}{res}      4,165     .112605    .3161473          0          1
+{txt}{space 7}union {c |}{res}      4,165    .3639856    .4812023          0          1
+{txt}{space 10}ed {c |}{res}      4,165    12.84538    2.787995          4         17
+{txt}{hline 13}{c +}{hline 57}
+{space 9}blk {c |}{res}      4,165    .0722689    .2589637          0          1
+{txt}{space 7}lwage {c |}{res}      4,165    6.676346    .4615122    4.60517      8.537
+{txt}{space 10}id {c |}{res}      4,165         298    171.7821          1        595
+{txt}{space 11}t {c |}{res}      4,165           4     2.00024          1          7
+{txt}{space 7}tdum1 {c |}{res}      4,165    .1428571    .3499691          0          1
+{txt}{hline 13}{c +}{hline 57}
+{space 7}tdum2 {c |}{res}      4,165    .1428571    .3499691          0          1
+{txt}{space 7}tdum3 {c |}{res}      4,165    .1428571    .3499691          0          1
+{txt}{space 7}tdum4 {c |}{res}      4,165    .1428571    .3499691          0          1
+{txt}{space 7}tdum5 {c |}{res}      4,165    .1428571    .3499691          0          1
+{txt}{space 7}tdum6 {c |}{res}      4,165    .1428571    .3499691          0          1
+{txt}{hline 13}{c +}{hline 57}
+{space 7}tdum7 {c |}{res}      4,165    .1428571    .3499691          0          1
+{txt}{space 8}exp2 {c |}{res}      4,165     514.405    496.9962          1       2601
+{txt}
+{com}. 
+. * Check the structure of the panel data
+. xtset
+{res}{txt}{col 8}panel variable:  {res}id (strongly balanced)
+{txt}{col 9}time variable:  {res}{col 25}t, 1 to 7
+{txt}{col 17}delta:  {res}1 unit
+{txt}
+{com}. 
+. ***********************************
+. * Step 2: Data Preprocessing
+. ***********************************
+. 
+. * Identify missing values and report them
+. misstable summarize
+{txt}(variables nonmissing or string)
+
+{com}. 
+. ***********************************
+. * Step 3: Preliminary Model Estimation
+. ***********************************
+. 
+. * Pooled OLS estimation for comparison
+. reg lwage l.lwage occ south ind, robust
+
+{txt}Linear regression                               Number of obs     = {res}     3,570
+                                                {txt}F(4, 3565)        =  {res}  2549.82
+                                                {txt}Prob > F          = {res}    0.0000
+                                                {txt}R-squared         = {res}    0.8463
+                                                {txt}Root MSE          =    {res} .17791
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}       lwage{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}lwage {c |}
+{space 9}L1. {c |}{col 14}{res}{space 2} .9098825{col 26}{space 2} .0126231{col 37}{space 1}   72.08{col 46}{space 3}0.000{col 54}{space 4} .8851333{col 67}{space 3} .9346316
+{txt}{space 12} {c |}
+{space 9}occ {c |}{col 14}{res}{space 2}-.0415852{col 26}{space 2} .0074749{col 37}{space 1}   -5.56{col 46}{space 3}0.000{col 54}{space 4}-.0562406{col 67}{space 3}-.0269297
+{txt}{space 7}south {c |}{col 14}{res}{space 2}-.0120844{col 26}{space 2} .0077897{col 37}{space 1}   -1.55{col 46}{space 3}0.121{col 54}{space 4}-.0273571{col 67}{space 3} .0031883
+{txt}{space 9}ind {c |}{col 14}{res}{space 2} .0174073{col 26}{space 2} .0059786{col 37}{space 1}    2.91{col 46}{space 3}0.004{col 54}{space 4} .0056855{col 67}{space 3} .0291291
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .7112371{col 26}{space 2} .0870898{col 37}{space 1}    8.17{col 46}{space 3}0.000{col 54}{space 4} .5404864{col 67}{space 3} .8819879
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. 
+. * Fixed effects model
+. xtreg lwage l.lwage occ south ind, fe robust
+{res}
+{txt}Fixed-effects (within) regression{col 49}Number of obs{col 67}={col 69}{res}     3,570
+{txt}Group variable: {res}id{txt}{col 49}Number of groups{col 67}={col 69}{res}       595
+
+{txt}R-sq:{col 49}Obs per group:
+     within  = {res}0.4470{col 63}{txt}min{col 67}={col 69}{res}         6
+{txt}     between = {res}0.9731{col 63}{txt}avg{col 67}={col 69}{res}       6.0
+{txt}     overall = {res}0.8362{col 63}{txt}max{col 67}={col 69}{res}         6
+
+{txt}{col 49}F({res}4{txt},{res}594{txt}){col 67}={col 70}{res}    87.63
+{txt}corr(u_i, Xb){col 16}= {res}0.7902{txt}{col 49}Prob > F{col 67}={col 73}{res}0.0000
+
+{txt}{ralign 78:(Std. Err. adjusted for {res:595} clusters in id)}
+{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}       lwage{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}lwage {c |}
+{space 9}L1. {c |}{col 14}{res}{space 2} .6451269{col 26}{space 2} .0349606{col 37}{space 1}   18.45{col 46}{space 3}0.000{col 54}{space 4} .5764656{col 67}{space 3} .7137882
+{txt}{space 12} {c |}
+{space 9}occ {c |}{col 14}{res}{space 2}-.0464026{col 26}{space 2}  .018635{col 37}{space 1}   -2.49{col 46}{space 3}0.013{col 54}{space 4}-.0830011{col 67}{space 3}-.0098041
+{txt}{space 7}south {c |}{col 14}{res}{space 2} .0616973{col 26}{space 2} .0632468{col 37}{space 1}    0.98{col 46}{space 3}0.330{col 54}{space 4}-.0625172{col 67}{space 3} .1859118
+{txt}{space 9}ind {c |}{col 14}{res}{space 2} .0173528{col 26}{space 2} .0224785{col 37}{space 1}    0.77{col 46}{space 3}0.440{col 54}{space 4}-.0267941{col 67}{space 3} .0614997
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 2.447812{col 26}{space 2} .2343305{col 37}{space 1}   10.45{col 46}{space 3}0.000{col 54}{space 4} 1.987595{col 67}{space 3} 2.908029
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+     sigma_u {c |} {res} .15246358
+     {txt}sigma_e {c |} {res} .17325444
+         {txt}rho {c |} {res} .43642816{txt}   (fraction of variance due to u_i)
+{hline 13}{c BT}{hline 64}
+
+{com}. 
+. * Random effects model
+. xtreg lwage l.lwage occ south ind, re robust
+{res}
+{txt}Random-effects GLS regression                   Number of obs     = {res}     3,570
+{txt}Group variable: {res}id                              {txt}Number of groups  = {res}       595
+
+{txt}R-sq:                                           Obs per group:
+     within  = {res}0.4463                                         {txt}min = {res}         6
+{txt}     between = {res}0.9863                                         {txt}avg = {res}       6.0
+{txt}     overall = {res}0.8463                                         {txt}max = {res}         6
+
+                                                {txt}Wald chi2({res}4{txt})      =  {res}  8934.77
+{txt}corr(u_i, X)   = {res}0{txt} (assumed)                    Prob > chi2       =     {res}0.0000
+
+{txt}{ralign 78:(Std. Err. adjusted for {res:595} clusters in id)}
+{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}       lwage{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}lwage {c |}
+{space 9}L1. {c |}{col 14}{res}{space 2} .9098825{col 26}{space 2} .0135692{col 37}{space 1}   67.05{col 46}{space 3}0.000{col 54}{space 4} .8832872{col 67}{space 3} .9364777
+{txt}{space 12} {c |}
+{space 9}occ {c |}{col 14}{res}{space 2}-.0415852{col 26}{space 2} .0064291{col 37}{space 1}   -6.47{col 46}{space 3}0.000{col 54}{space 4}-.0541859{col 67}{space 3}-.0289844
+{txt}{space 7}south {c |}{col 14}{res}{space 2}-.0120844{col 26}{space 2} .0056033{col 37}{space 1}   -2.16{col 46}{space 3}0.031{col 54}{space 4}-.0230666{col 67}{space 3}-.0011022
+{txt}{space 9}ind {c |}{col 14}{res}{space 2} .0174073{col 26}{space 2} .0053244{col 37}{space 1}    3.27{col 46}{space 3}0.001{col 54}{space 4} .0069716{col 67}{space 3}  .027843
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .7112371{col 26}{space 2} .0921868{col 37}{space 1}    7.72{col 46}{space 3}0.000{col 54}{space 4} .5305542{col 67}{space 3}   .89192
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+     sigma_u {c |} {res}         0
+     {txt}sigma_e {c |} {res} .17325444
+         {txt}rho {c |} {res}         0{txt}   (fraction of variance due to u_i)
+{hline 13}{c BT}{hline 64}
+
+{com}. 
+. ***********************************
+. * Step 4: Arellano-Bond Dynamic Panel-Data Estimation
+. ***********************************
+. 
+. * Basic Arellano-Bond estimation
+. xtabond lwage, lags(2) vce(robust)
+{res}
+{txt}Arellano-Bond dynamic panel-data estimation{col 49}Number of obs{col 67}= {res}     2,380
+{txt}Group variable: {res}id{txt}{col 49}{txt}Number of groups{col 67}= {res}       595
+{txt}Time variable: {res}t
+{txt}{col 49}Obs per group:
+{col 63}min{col 67}= {res}         4
+{txt}{col 63}avg{col 67}=  {res}        4
+{txt}{col 63}max{col 67}= {res}         4
+
+{txt}Number of instruments =  {res}   15{txt}{col 49}Wald chi2({res}2{txt}){col 67}=  {res}  1253.03
+{txt}{col 49}Prob > chi2{col 67}={col 73}{res}0.0000
+{txt}One-step results
+{res}{txt}{ralign 78:(Std. Err. adjusted for clustering on id)}
+{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}       lwage{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}lwage {c |}
+{space 9}L1. {c |}{col 14}{res}{space 2} .5707517{col 26}{space 2} .0333941{col 37}{space 1}   17.09{col 46}{space 3}0.000{col 54}{space 4} .5053005{col 67}{space 3} .6362029
+{txt}{space 9}L2. {c |}{col 14}{res}{space 2} .2675649{col 26}{space 2} .0242641{col 37}{space 1}   11.03{col 46}{space 3}0.000{col 54}{space 4} .2200082{col 67}{space 3} .3151216
+{txt}{space 12} {c |}
+{space 7}_cons {c |}{col 14}{res}{space 2} 1.203588{col 26}{space 2}  .164496{col 37}{space 1}    7.32{col 46}{space 3}0.000{col 54}{space 4} .8811814{col 67}{space 3} 1.525994
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{txt}Instruments for differenced equation
+{p 8 18 14}{txt}GMM-type: {res}L(2/.).lwage{p_end}
+{txt}Instruments for level equation
+{p 8 18 14}{txt}Standard: {res}_cons{p_end}
+{txt}
+{com}. 
+. * Two-step Arellano-Bond estimation
+. xtabond lwage, lags(2) twostep vce(robust)
+{res}
+{txt}Arellano-Bond dynamic panel-data estimation{col 49}Number of obs{col 67}= {res}     2,380
+{txt}Group variable: {res}id{txt}{col 49}{txt}Number of groups{col 67}= {res}       595
+{txt}Time variable: {res}t
+{txt}{col 49}Obs per group:
+{col 63}min{col 67}= {res}         4
+{txt}{col 63}avg{col 67}=  {res}        4
+{txt}{col 63}max{col 67}= {res}         4
+
+{txt}Number of instruments =  {res}   15{txt}{col 49}Wald chi2({res}2{txt}){col 67}=  {res}  1974.40
+{txt}{col 49}Prob > chi2{col 67}={col 73}{res}0.0000
+{txt}Two-step results
+{res}{txt}{ralign 78:(Std. Err. adjusted for clustering on id)}
+{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}   WC-Robust
+{col 1}       lwage{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}lwage {c |}
+{space 9}L1. {c |}{col 14}{res}{space 2} .6095931{col 26}{space 2} .0330542{col 37}{space 1}   18.44{col 46}{space 3}0.000{col 54}{space 4}  .544808{col 67}{space 3} .6743782
+{txt}{space 9}L2. {c |}{col 14}{res}{space 2} .2708335{col 26}{space 2} .0279226{col 37}{space 1}    9.70{col 46}{space 3}0.000{col 54}{space 4} .2161061{col 67}{space 3} .3255608
+{txt}{space 12} {c |}
+{space 7}_cons {c |}{col 14}{res}{space 2} .9182262{col 26}{space 2} .1339978{col 37}{space 1}    6.85{col 46}{space 3}0.000{col 54}{space 4} .6555952{col 67}{space 3} 1.180857
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{txt}Instruments for differenced equation
+{p 8 18 14}{txt}GMM-type: {res}L(2/.).lwage{p_end}
+{txt}Instruments for level equation
+{p 8 18 14}{txt}Standard: {res}_cons{p_end}
+{txt}
+{com}. 
+. * Arellano-Bond with restricted lag depth
+. xtabond lwage, lags(2) twostep maxldep(1) vce(robust)
+{res}
+{txt}Arellano-Bond dynamic panel-data estimation{col 49}Number of obs{col 67}= {res}     2,380
+{txt}Group variable: {res}id{txt}{col 49}{txt}Number of groups{col 67}= {res}       595
+{txt}Time variable: {res}t
+{txt}{col 49}Obs per group:
+{col 63}min{col 67}= {res}         4
+{txt}{col 63}avg{col 67}=  {res}        4
+{txt}{col 63}max{col 67}= {res}         4
+
+{txt}Number of instruments =  {res}    5{txt}{col 49}Wald chi2({res}2{txt}){col 67}=  {res}  1505.16
+{txt}{col 49}Prob > chi2{col 67}={col 73}{res}0.0000
+{txt}Two-step results
+{res}{txt}{ralign 78:(Std. Err. adjusted for clustering on id)}
+{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}   WC-Robust
+{col 1}       lwage{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}lwage {c |}
+{space 9}L1. {c |}{col 14}{res}{space 2} .4881009{col 26}{space 2} .2071965{col 37}{space 1}    2.36{col 46}{space 3}0.018{col 54}{space 4} .0820033{col 67}{space 3} .8941985
+{txt}{space 9}L2. {c |}{col 14}{res}{space 2} .3716262{col 26}{space 2} .1852204{col 37}{space 1}    2.01{col 46}{space 3}0.045{col 54}{space 4}  .008601{col 67}{space 3} .7346514
+{txt}{space 12} {c |}
+{space 7}_cons {c |}{col 14}{res}{space 2} 1.069578{col 26}{space 2} .2210474{col 37}{space 1}    4.84{col 46}{space 3}0.000{col 54}{space 4} .6363334{col 67}{space 3} 1.502823
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{txt}Instruments for differenced equation
+{p 8 18 14}{txt}GMM-type: {res}L(2/2).lwage{p_end}
+{txt}Instruments for level equation
+{p 8 18 14}{txt}Standard: {res}_cons{p_end}
+{txt}
+{com}. xtabond lwage, lags(2) twostep maxldep(2) vce(robust)
+{res}
+{txt}Arellano-Bond dynamic panel-data estimation{col 49}Number of obs{col 67}= {res}     2,380
+{txt}Group variable: {res}id{txt}{col 49}{txt}Number of groups{col 67}= {res}       595
+{txt}Time variable: {res}t
+{txt}{col 49}Obs per group:
+{col 63}min{col 67}= {res}         4
+{txt}{col 63}avg{col 67}=  {res}        4
+{txt}{col 63}max{col 67}= {res}         4
+
+{txt}Number of instruments =  {res}    9{txt}{col 49}Wald chi2({res}2{txt}){col 67}=  {res}  2038.31
+{txt}{col 49}Prob > chi2{col 67}={col 73}{res}0.0000
+{txt}Two-step results
+{res}{txt}{ralign 78:(Std. Err. adjusted for clustering on id)}
+{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}   WC-Robust
+{col 1}       lwage{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}lwage {c |}
+{space 9}L1. {c |}{col 14}{res}{space 2} .6659315{col 26}{space 2} .0307804{col 37}{space 1}   21.63{col 46}{space 3}0.000{col 54}{space 4} .6056031{col 67}{space 3}   .72626
+{txt}{space 9}L2. {c |}{col 14}{res}{space 2}  .222563{col 26}{space 2} .0256002{col 37}{space 1}    8.69{col 46}{space 3}0.000{col 54}{space 4} .1723876{col 67}{space 3} .2727384
+{txt}{space 12} {c |}
+{space 7}_cons {c |}{col 14}{res}{space 2}   .86144{col 26}{space 2} .1322879{col 37}{space 1}    6.51{col 46}{space 3}0.000{col 54}{space 4} .6021606{col 67}{space 3} 1.120719
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{txt}Instruments for differenced equation
+{p 8 18 14}{txt}GMM-type: {res}L(2/3).lwage{p_end}
+{txt}Instruments for level equation
+{p 8 18 14}{txt}Standard: {res}_cons{p_end}
+{txt}
+{com}. 
+. ***********************************
+. * Step 5: Advanced Arellano-Bond Models
+. ***********************************
+. 
+. * Model including additional explanatory variables
+. xtabond lwage occ south ind, lags(2) twostep maxldep(2) vce(robust)
+{res}
+{txt}Arellano-Bond dynamic panel-data estimation{col 49}Number of obs{col 67}= {res}     2,380
+{txt}Group variable: {res}id{txt}{col 49}{txt}Number of groups{col 67}= {res}       595
+{txt}Time variable: {res}t
+{txt}{col 49}Obs per group:
+{col 63}min{col 67}= {res}         4
+{txt}{col 63}avg{col 67}=  {res}        4
+{txt}{col 63}max{col 67}= {res}         4
+
+{txt}Number of instruments =  {res}   12{txt}{col 49}Wald chi2({res}5{txt}){col 67}=  {res}  2033.97
+{txt}{col 49}Prob > chi2{col 67}={col 73}{res}0.0000
+{txt}Two-step results
+{res}{txt}{ralign 78:(Std. Err. adjusted for clustering on id)}
+{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}   WC-Robust
+{col 1}       lwage{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}lwage {c |}
+{space 9}L1. {c |}{col 14}{res}{space 2} .6643204{col 26}{space 2} .0312004{col 37}{space 1}   21.29{col 46}{space 3}0.000{col 54}{space 4} .6031688{col 67}{space 3}  .725472
+{txt}{space 9}L2. {c |}{col 14}{res}{space 2} .2220216{col 26}{space 2} .0258318{col 37}{space 1}    8.59{col 46}{space 3}0.000{col 54}{space 4} .1713923{col 67}{space 3} .2726509
+{txt}{space 12} {c |}
+{space 9}occ {c |}{col 14}{res}{space 2}-.0520309{col 26}{space 2} .0321743{col 37}{space 1}   -1.62{col 46}{space 3}0.106{col 54}{space 4}-.1150913{col 67}{space 3} .0110296
+{txt}{space 7}south {c |}{col 14}{res}{space 2} .0460085{col 26}{space 2} .1723872{col 37}{space 1}    0.27{col 46}{space 3}0.790{col 54}{space 4}-.2918642{col 67}{space 3} .3838812
+{txt}{space 9}ind {c |}{col 14}{res}{space 2} .0603585{col 26}{space 2}  .032921{col 37}{space 1}    1.83{col 46}{space 3}0.067{col 54}{space 4}-.0041654{col 67}{space 3} .1248824
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}  .865165{col 26}{space 2} .1352089{col 37}{space 1}    6.40{col 46}{space 3}0.000{col 54}{space 4} .6001603{col 67}{space 3}  1.13017
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{txt}Instruments for differenced equation
+{p 8 18 14}{txt}GMM-type: {res}L(2/3).lwage{p_end}
+{p 8 18 14}{txt}Standard: {res}D.occ D.south D.ind{p_end}
+{txt}Instruments for level equation
+{p 8 18 14}{txt}Standard: {res}_cons{p_end}
+{txt}
+{com}. 
+. * Model with predetermined and endogenous variables
+. xtabond lwage occ south ind, lags(2) twostep maxldep(3) ///
+>     pre(wks, lag(1, 2)) endogenous(union, lag(0, 2)) vce(robust)
+{res}
+{txt}Arellano-Bond dynamic panel-data estimation{col 49}Number of obs{col 67}= {res}     2,380
+{txt}Group variable: {res}id{txt}{col 49}{txt}Number of groups{col 67}= {res}       595
+{txt}Time variable: {res}t
+{txt}{col 49}Obs per group:
+{col 63}min{col 67}= {res}         4
+{txt}{col 63}avg{col 67}=  {res}        4
+{txt}{col 63}max{col 67}= {res}         4
+
+{txt}Number of instruments =  {res}   31{txt}{col 49}Wald chi2({res}8{txt}){col 67}=  {res}  1419.68
+{txt}{col 49}Prob > chi2{col 67}={col 73}{res}0.0000
+{txt}Two-step results
+{res}{txt}{ralign 78:(Std. Err. adjusted for clustering on id)}
+{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}   WC-Robust
+{col 1}       lwage{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}lwage {c |}
+{space 9}L1. {c |}{col 14}{res}{space 2} .6090671{col 26}{space 2} .0352504{col 37}{space 1}   17.28{col 46}{space 3}0.000{col 54}{space 4} .5399775{col 67}{space 3} .6781567
+{txt}{space 9}L2. {c |}{col 14}{res}{space 2} .2495109{col 26}{space 2}  .031169{col 37}{space 1}    8.01{col 46}{space 3}0.000{col 54}{space 4} .1884208{col 67}{space 3} .3106011
+{txt}{space 12} {c |}
+{space 9}wks {c |}
+{space 9}--. {c |}{col 14}{res}{space 2}-.0180736{col 26}{space 2}  .009813{col 37}{space 1}   -1.84{col 46}{space 3}0.066{col 54}{space 4}-.0373067{col 67}{space 3} .0011594
+{txt}{space 9}L1. {c |}{col 14}{res}{space 2} .0051774{col 26}{space 2} .0029748{col 37}{space 1}    1.74{col 46}{space 3}0.082{col 54}{space 4}-.0006531{col 67}{space 3} .0110078
+{txt}{space 12} {c |}
+{space 7}union {c |}{col 14}{res}{space 2}-.0544799{col 26}{space 2} .1629562{col 37}{space 1}   -0.33{col 46}{space 3}0.738{col 54}{space 4}-.3738681{col 67}{space 3} .2649083
+{txt}{space 9}occ {c |}{col 14}{res}{space 2}-.0462514{col 26}{space 2} .0358923{col 37}{space 1}   -1.29{col 46}{space 3}0.198{col 54}{space 4}-.1165991{col 67}{space 3} .0240963
+{txt}{space 7}south {c |}{col 14}{res}{space 2}-.0312708{col 26}{space 2} .2020863{col 37}{space 1}   -0.15{col 46}{space 3}0.877{col 54}{space 4}-.4273527{col 67}{space 3} .3648111
+{txt}{space 9}ind {c |}{col 14}{res}{space 2} .0236045{col 26}{space 2}   .04159{col 37}{space 1}    0.57{col 46}{space 3}0.570{col 54}{space 4}-.0579104{col 67}{space 3} .1051193
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 1.709142{col 26}{space 2} .5382525{col 37}{space 1}    3.18{col 46}{space 3}0.001{col 54}{space 4} .6541862{col 67}{space 3} 2.764097
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{txt}Instruments for differenced equation
+{p 8 18 14}{txt}GMM-type: {res}L(2/4).lwage L(1/2).L.wks L(2/3).union{p_end}
+{p 8 18 14}{txt}Standard: {res}D.occ D.south D.ind{p_end}
+{txt}Instruments for level equation
+{p 8 18 14}{txt}Standard: {res}_cons{p_end}
+{txt}
+{com}. 
+. * Adding the Arellano-Bond autocorrelation test
+. xtabond lwage occ south ind, lags(2) twostep maxldep(3) ///
+>     pre(wks, lag(1, 2)) endogenous(union, lag(0, 2)) vce(robust) artest(3)
+{res}
+{txt}Arellano-Bond dynamic panel-data estimation{col 49}Number of obs{col 67}= {res}     2,380
+{txt}Group variable: {res}id{txt}{col 49}{txt}Number of groups{col 67}= {res}       595
+{txt}Time variable: {res}t
+{txt}{col 49}Obs per group:
+{col 63}min{col 67}= {res}         4
+{txt}{col 63}avg{col 67}=  {res}        4
+{txt}{col 63}max{col 67}= {res}         4
+
+{txt}Number of instruments =  {res}   31{txt}{col 49}Wald chi2({res}8{txt}){col 67}=  {res}  1419.68
+{txt}{col 49}Prob > chi2{col 67}={col 73}{res}0.0000
+{txt}Two-step results
+{res}{txt}{ralign 78:(Std. Err. adjusted for clustering on id)}
+{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}   WC-Robust
+{col 1}       lwage{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}lwage {c |}
+{space 9}L1. {c |}{col 14}{res}{space 2} .6090671{col 26}{space 2} .0352504{col 37}{space 1}   17.28{col 46}{space 3}0.000{col 54}{space 4} .5399775{col 67}{space 3} .6781567
+{txt}{space 9}L2. {c |}{col 14}{res}{space 2} .2495109{col 26}{space 2}  .031169{col 37}{space 1}    8.01{col 46}{space 3}0.000{col 54}{space 4} .1884208{col 67}{space 3} .3106011
+{txt}{space 12} {c |}
+{space 9}wks {c |}
+{space 9}--. {c |}{col 14}{res}{space 2}-.0180736{col 26}{space 2}  .009813{col 37}{space 1}   -1.84{col 46}{space 3}0.066{col 54}{space 4}-.0373067{col 67}{space 3} .0011594
+{txt}{space 9}L1. {c |}{col 14}{res}{space 2} .0051774{col 26}{space 2} .0029748{col 37}{space 1}    1.74{col 46}{space 3}0.082{col 54}{space 4}-.0006531{col 67}{space 3} .0110078
+{txt}{space 12} {c |}
+{space 7}union {c |}{col 14}{res}{space 2}-.0544799{col 26}{space 2} .1629562{col 37}{space 1}   -0.33{col 46}{space 3}0.738{col 54}{space 4}-.3738681{col 67}{space 3} .2649083
+{txt}{space 9}occ {c |}{col 14}{res}{space 2}-.0462514{col 26}{space 2} .0358923{col 37}{space 1}   -1.29{col 46}{space 3}0.198{col 54}{space 4}-.1165991{col 67}{space 3} .0240963
+{txt}{space 7}south {c |}{col 14}{res}{space 2}-.0312708{col 26}{space 2} .2020863{col 37}{space 1}   -0.15{col 46}{space 3}0.877{col 54}{space 4}-.4273527{col 67}{space 3} .3648111
+{txt}{space 9}ind {c |}{col 14}{res}{space 2} .0236045{col 26}{space 2}   .04159{col 37}{space 1}    0.57{col 46}{space 3}0.570{col 54}{space 4}-.0579104{col 67}{space 3} .1051193
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 1.709142{col 26}{space 2} .5382525{col 37}{space 1}    3.18{col 46}{space 3}0.001{col 54}{space 4} .6541862{col 67}{space 3} 2.764097
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{txt}Instruments for differenced equation
+{p 8 18 14}{txt}GMM-type: {res}L(2/4).lwage L(1/2).L.wks L(2/3).union{p_end}
+{p 8 18 14}{txt}Standard: {res}D.occ D.south D.ind{p_end}
+{txt}Instruments for level equation
+{p 8 18 14}{txt}Standard: {res}_cons{p_end}
+{txt}
+{com}. 
+. 
+{txt}end of do-file
+
+{com}. 
