@@ -29,7 +29,7 @@ Special thanks to **Rabindra Bharati University** and **Prof. Tusher Nandi**, In
 The data is loaded from a `.dta` file:
 
 ```stata
-use "C:\Users\Sangita Das\Desktop\Panel_data\Panel_data_RBU\2_dynamc_panel_data.dta", clear
+use "path/to/dynamic_panel_data.dta", clear
 ```
 
 ### Exploring the Data
@@ -127,12 +127,10 @@ xtabond lwage occ south ind, lags(2) twostep maxldep(3) ///
     pre(wks, lag(1, 2)) endogenous(union, lag(0, 2)) vce(robust) artest(3)
 ```
 
-## Contact
+## **Contact**
 
-Sangita Das  
+For queries or feedback, please contact:  
+**Sangita Das**  
 Email: [dassangita844@gmail.com](mailto:dassangita844@gmail.com)
 
-## Notes
-
-1. Make sure to replace the file path in the `use` command with the actual path to your dataset.
-2. Adjust the model specifications as necessary for your analysis.
+**Note**: This repository and analysis are intended for educational purposes only.
