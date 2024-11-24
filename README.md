@@ -4,13 +4,15 @@
 
 This repository contains Stata code and instructions for performing dynamic panel data analysis, including the estimation of pooled OLS, fixed effects, random effects, and Arellano-Bond models. The analysis focuses on understanding the relationship between variables such as wage (`lwage`), occupation (`occ`), region (`south`), and industry (`ind`), using panel data.
 
-## Data Source
+## **Data Source**
 
 The data was provided during the **Workshop on Panel Data Analysis** at **Rabindra Bharati University**, held on **22nd March 2024**.
 
-## Acknowledgment
+- **Resource Person**: Prof. Tusher Nandi, Indian Institute of Science Education  
 
-Special thanks to **Rabindra Bharati University** and **Prof. Tusher Nandi**, Indian Institute of Science Education, for providing the dataset and their invaluable insights on dynamic panel data analysis.
+## **Acknowledgment**
+
+Special thanks to **Rabindra Bharati University** for organizing the workshop and to **Prof. Tusher Nandi** for providing the dataset and sharing his invaluable insights on static panel data analysis.
 
 ## Table of Contents
 
