@@ -12,7 +12,7 @@ The data was provided during the **Workshop on Panel Data Analysis** at **Rabind
 
 ## **Acknowledgment**
 
-Special thanks to **Rabindra Bharati University** for organizing the workshop and to **Prof. Tusher Nandi** for providing the dataset and sharing his invaluable insights on static panel data analysis.
+Special thanks to **Rabindra Bharati University** for organizing the workshop and to **Prof. Tusher Nandi** for providing the dataset and sharing his invaluable insights on Dynamic panel data analysis.
 
 ## Table of Contents
 
